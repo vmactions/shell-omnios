@@ -1,0 +1,24 @@
+
+name: shell
+
+on: [push, workflow_dispatch]
+
+jobs:
+  runshell:
+    runs-on: ubuntu-latest
+    name: Start a omnios shell
+    steps:
+    - name: Starting a omnios VM, please wait. It may take 5 minutes
+      id: shell
+      uses: vmactions/omnios-vm@v1
+      with:
+        run: |
+          pwd
+          ls -lah
+          whoami
+          env
+          echo "OK"
+    - name: Sleep
+      run: for i in $(seq 1 10) ; do echo $i; sleep 1; done
+    - uses: neilpang/debugger-action@master
+
