@@ -12,6 +12,7 @@ jobs:
       id: shell
       uses: vmactions/omnios-vm@v1
       with:
+        sync: no
         run: |
           pwd
           ls -lah
